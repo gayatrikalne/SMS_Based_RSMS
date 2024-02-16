@@ -1,0 +1,12 @@
+table {
+    margin-top: 2rem;
+}
+
+.server-form {
+    margin-top: 2rem;
+}
+
+.server-btn {
+    display: flex;
+    align-items: end;
+}

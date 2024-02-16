@@ -1,0 +1,60 @@
+/* src/styles/adminStyles.css */
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.admin-form-container {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the form horizontally */
+}
+
+.admin-form-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.admin-form-container input {
+  width: calc(100% - 16px); /* Adjust width to account for padding */
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.admin-form-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.admin-form-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-form {
+  width: 500px;
+  margin: auto;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  background: #ffffff88;
+}
+
+form h3 {
+  margin-top: 2rem;
+}

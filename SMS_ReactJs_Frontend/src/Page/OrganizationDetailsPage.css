@@ -1,0 +1,12 @@
+table {
+    margin-top: 2rem;
+}
+
+.organization-form {
+    margin-top: 2rem;
+}
+
+.organization-btn {
+    display: flex;
+    align-items: end;
+}
