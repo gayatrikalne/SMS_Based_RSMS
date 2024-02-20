@@ -1,0 +1,12 @@
+table {
+    margin-top: 2rem;
+}
+
+.emp-form {
+    margin-top: 2rem;
+}
+
+.emp-btn {
+    display: flex;
+    align-items: end;
+}

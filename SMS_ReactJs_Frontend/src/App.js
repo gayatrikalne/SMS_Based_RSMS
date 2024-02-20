@@ -9,6 +9,9 @@ import OrganizationDetailsPage from './Page/OrganizationDetailsPage';
 import EmployeeDetailsPage from './Page/EmployeeDetailsPage';
 import EmployeeLogin from './Page/EmployeeLogin';
 import ServerDetailsPage from './Page/ServerDetailsPage';
+import NotificationPage from './Page/NotificationDetailsPage';
+import EmployeePage from './Page/EmployeePage';
+
 
 
 
@@ -25,6 +28,8 @@ function App() {
         <Route path='/EmployeeDetailsPage' element = {<EmployeeDetailsPage />}></Route>
         <Route path='/ServerDetailsPage' element = {<ServerDetailsPage />}></Route>
         <Route path='/EmployeeLogin' element = {<EmployeeLogin />}></Route>
+        <Route path='/NotificationPage' element = {<NotificationPage />}></Route>
+        <Route path='/EmployeePage' element = {<EmployeePage />}></Route>
       </Routes>
     </BrowserRouter>
   );

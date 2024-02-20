@@ -46,7 +46,7 @@ export default function AddServer(props) {
     );
     props.updateServerList();
     resetForm();
-    toast.success('Server updated successfully!');
+    toast.success(`Server updated successfully!`);
   };
 
   const handleInput = (e) => {

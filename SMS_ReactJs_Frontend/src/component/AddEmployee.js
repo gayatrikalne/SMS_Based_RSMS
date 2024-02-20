@@ -47,7 +47,6 @@ export default function AddEmployee(props) {
         );
         props.updateEmployeeList();
         resetForm();
-        //alert("Employee updated successfully!");
         toast.success('Employee updated successfully!');
     };
 

@@ -1,39 +1,41 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function AddNotification(props) {
+export default function SendNotification(props) {
+
     const [NotifId, setNotifId] = useState();
     const [Id, setId] = useState();
-    const [NotifDate, setNotifDate] = useState();
-
-  const [isUpdateButton, setIsUpdateButton] = useState(false);
+    const [NDate, setNDate] = useState();
 
   useEffect(() => {
     if (props.notification.NotificationId) {
-        setNotifId(props.notification.NotificationId);
-        setId(props.notification.id);
-        setNotifDate(props.notification.Date);
-      setIsUpdateButton(true);
-    } else setIsUpdateButton(false);
-  }, [props]);
+      setNotifId(props.notification.NotificationId);
+      setId(props.notification.id);
+      setNDate(props.notification.Date);
+    } 
+  },[props]);
 
-    const handleInput = (n) => {
-        switch (n.target.id) {
-            case "ServerId":
-                setServerId(n.target.value);
-                break;
-            case "NotifId":
-                setNotifId(n.target.value);
-                break;
-            case "NotifDate":
-                setNotifDate(n.target.value);
-                break;
-        }
-    };
-
-  const saveNotification = async (notification) => {
+  const handleInput = (e) => {
+    switch (e.target.id) { 
+      case "NotifId":
+        setNotifId(e.target.value);
+        break;
+      case "Id":
+        setId(e.target.value);
+        break;
+      case "NDate":
+        setNDate(e.target.value);
+        break;
+      default:
+        break;
+    }
+  };
+  
+  const sendNotification = async (notification) => {
     const response = await axios.post(
-      "http://127.0.0.1:1920/notifications",
+      "http://127.0.0.1:5000/notifications",
       notification
     );
     if (response.data) {
@@ -43,35 +45,25 @@ export default function AddNotification(props) {
   };
 
   const resetForm = () => {
-    setId("");
     setNotifId("");
-    setNotifDate("");
-   
-    setIsUpdateButton(false);
+    setId("");
+    setNDate("");
   };
 
-  const handleSubmit = async (n) => {
-    n.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const object = {
-        id: Id,
-        NotificationId: NotifId,
-        Date: NotifDate,
+      NotificationId : NotifId,
+      id: Id,
+      Date: NDate,
     };
 
     console.log(object);
-
-    // call api to save product
-    if (isUpdateButton) {
-      updateNotification(object);
-    } else {
-      saveNotification(object);
-    }
-    // const response = await axios.post("http://127.0.0.1:1920/products", object);
-    // console.log(response.data);
+    sendNotification(object);
   };
 
   return (
-    <form className="row server-form">
+    <form className="row notification-form">
         <div className="form-group col-4">
         <label htmlFor="NotifId">Notification ID: </label>
         <input
@@ -83,31 +75,31 @@ export default function AddNotification(props) {
         />
       </div>
       <div className="form-group col-4">
-        <label htmlFor="ServerId">Server Id: </label>
+        <label htmlFor="Id">Id</label>
         <input
           className="form-control"
           type="text"
-          id="ServerId"
-          value={ServerId}
+          id="Id"
+          value={Id}
           onChange={handleInput}
         />
       </div>
       <div className="form-group col-4">
-        <label htmlFor="NotifDate">Notification Date: </label>
+        <label htmlFor="NDate">Notification Date: </label>
         <input
           className="form-control"
           type="text"
-          id="NotifDate"
-          value={NotifDate}
+          id="NDate"
+          value={NDate}
           onChange={handleInput}
         />
       </div>
-      
-      <div className="form-group col-4 server-btn">
+      <div className="form-group col-4 notification-btn">
         <button className="btn btn-success" onClick={handleSubmit}>
-          {isUpdateButton ? "Update Notification" : "Save Notification"}
+           Send SMS
         </button>
       </div>
     </form>
   );
 }
+

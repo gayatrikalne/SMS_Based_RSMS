@@ -10,18 +10,18 @@ const EmployeeLogin = () => {
   const [empId, setEmpId] = useState('');
   const [password, setPassword] = useState('');
  
-const navigate = useNavigate(); 
+  const navigate = useNavigate(); 
 
 const handleLogin = async () => {
   try {
-    const response = await axios.post('http://localhost:5000/emplogin', {
+    const response = await axios.post('http://localhost:5000/auth/emplogin', {
       empId: empId,
       password: password,
     });
 
     if (response.status === 200) {
       toast.success('Login successful');
-      navigate("/AdminPage");
+      navigate("/EmployeePage");
     } else {
       toast.error('Login failed. Please check your credentials.');
     }
@@ -34,6 +34,45 @@ const handleLogin = async () => {
     }
   }
 };
+
+// const handleLogin = async (e) => {
+//   e.preventDefault();
+
+//   const reqBody = {
+//     empId: empId,
+//     password: password,
+//   };
+//   console.log(reqBody);
+
+//   try {
+//     const result = await axios.post(
+//       "http://127.0.0.1:5000/auth/emplogin",
+//       reqBody
+//     );
+
+//     if (result.data.token) {
+//       // redirect to EmployeePage
+//       localStorage.setItem("token", result.data.token);
+//       navigate("/EmployeePage", { replace: true });
+//     } else {
+//       // show alert invalid username and password
+//       toast.error('Login failed. Please check your credentials.');
+//       throw "Invalid username and password";
+//     }
+
+//     console.log(result);
+//   } catch (err) {
+//     console.error(err);
+//     if (err.response) {
+//       alert(err.response.statusText);
+//     } else {
+//       // Handle other types of errors
+//       console.error("An error occurred:", err);
+//     }
+//   }
+// };
+
+
 
 return (
     <div className="admin-login-container">

@@ -16,33 +16,36 @@ const AdminLogin = () => {
  
 const navigate = useNavigate(); 
 
-const handleLogin = async () => {
-  try {
-    const response = await axios.post('http://localhost:5000/login', {
-      adminId: adminId,
-      password: password,
-    });
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    if (response.status === 200) {
-      toast.success('Login successful');
-      navigate("/AdminPage");
+  const reqBody = {
+    adminId: adminId,
+    password: password,
+  };
+  try {
+    const result = await axios.post(
+      "http://127.0.0.1:5000/auth/adminlogin",
+      reqBody
+    );
+
+    if (result.data.token) {
+      // redirect to productPage
+      localStorage.setItem("token", result.data.token);
+      navigate("/AdminPage", { replace: true });
     } else {
+      // show alert invalid username and password
       toast.error('Login failed. Please check your credentials.');
+      throw "invalid username and password";
     }
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-      toast.error('Invalid credentials. Please check your adminId and password.');
-    } else {
-      console.error('Error during login:', error);
-      toast.error('An error occurred during login.');
-    }
+
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+    alert(err.response.statusText);
   }
 };
-
-
 // ... (rest of the component)
-
-
 const handleRegistration = async () => {
   try {
     const response = await axios.post('http://localhost:5000/register', {

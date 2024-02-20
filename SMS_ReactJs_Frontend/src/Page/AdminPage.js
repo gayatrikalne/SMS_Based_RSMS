@@ -1,7 +1,9 @@
 import "./AdminPage.css";
 import { useNavigate } from "react-router-dom";
-function AdminPage(){
+import { useEffect, useState } from "react";
 
+function AdminPage(){
+    const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(true);
     const navigate = useNavigate();
     
     const handleButtonOrgClick = () => {
@@ -15,6 +17,20 @@ function AdminPage(){
     const handleButtonServerClick = () => {
         navigate('/ServerDetailsPage');
     };
+    
+    const handleButtonNotificationClick = () => {
+        navigate('/NotificationPage');
+    };
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) navigate("/", { replace: true });
+      }, []);
+
+    const handleLogOff = () => {
+        localStorage.removeItem("token");
+        navigate("/", { replace: true });
+    };
 
     return(
         <div>
@@ -23,7 +39,7 @@ function AdminPage(){
                 <a href="#contact">Contact</a>
                 <a href="#about">About</a>
                 
-                <button type="button" class="btn btn-light m-2">LogOut</button>
+                <button type="button" class="btn btn-light m-2" onClick={handleLogOff}>LogOut</button>
                 
             </div>
 
@@ -67,6 +83,7 @@ function AdminPage(){
                             type="button"
                             class="btn btn-light m-4"
                             style={{width :300}}
+                            onClick={handleButtonNotificationClick}
                         >
                             Notification Details
                         </button>
