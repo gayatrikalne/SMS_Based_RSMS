@@ -31,7 +31,7 @@ function ContactPage()
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
 
-            <p className="mt-4">Alternatively, you can reach us via email at <a href="mailto:contact@example.com">contact@example.com</a>.</p>
+            <p className="mt-4">Alternatively, you can reach us via email at <a href="mailto:contact@remotesms.com">contact@remotesms.com</a>.</p>
         </div>
     );
 }
